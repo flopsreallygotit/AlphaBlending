@@ -33,14 +33,13 @@ FASTFLAGS ?= -Ofast -mavx -mavx512dq # -DSLOW # <-- Slow flag for debug and test
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Configure directory flags.
-DIRFLAGS ?= -IUniversal
+DIRFLAGS ?= # None
 
 # Configure sources you need to compile.
-SOURCES  ?= main.cpp mainUtils.cpp 			\
-			Universal/universalUtils.cpp
+SOURCES  ?= main.cpp mainUtils.cpp
 
 # Configure sources dependencies.
-DEPENDS  ?= mainUtils.h
+DEPENDS  ?= mainUtils.hpp
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
