@@ -28,15 +28,16 @@ CXXFLAGS ?= -ggdb3 -std=c++17 -O0 -Wall -Wextra -Weffc++ 				   \
 LINKFLAGS ?= -lsfml-graphics -lsfml-window -lsfml-system
 
 # Configure program perfomance boost flags.
-FASTFLAGS ?= -Ofast -mavx -mavx512dq # -DSLOW # <-- Slow flag for debug and tests
+FASTFLAGS ?= -Ofast -mavx -mavx2 -mavx512dq # -DSLOW # <-- Slow flag for debug and tests
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Configure directory flags.
-DIRFLAGS ?= # None
+DIRFLAGS ?= -IUniversal
 
 # Configure sources you need to compile.
-SOURCES  ?= main.cpp mainUtils.cpp
+SOURCES  ?= main.cpp mainUtils.cpp 		\
+			Universal/universalUtils.cpp
 
 # Configure sources dependencies.
 DEPENDS  ?= mainUtils.hpp
