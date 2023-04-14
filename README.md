@@ -10,6 +10,14 @@ To maximize performance we are going to use SSE instructions.
 > CPU: Intel Core i5 11300H
 > Tests were conducted on 800 x 600 Background image and 236 x 127 Foreground image
 
+![image](https://user-images.githubusercontent.com/89828695/232138646-30904b8e-6da6-4004-bc8f-3b968859ea73.png)
+
+We want to mix two images in RGBA profile together. Each pixel will be calculated according to this expression:
+
+$newColor_{red} = backgroundColor_{red} * \alpha + foregroundColor_{red} * (\alpha - 1)$ 
+
+The same goes for green and blue channels. Alpha of new pixel will be the same as alpha of current background pixel.
+
 ## Quick Start
 
 First clone repo:
@@ -24,14 +32,6 @@ make
 ```
 
 Don't forget to change flags in Makefile. Now you can research the SSE instructions optimization by yourself!
-
-## Overview
-
-We want to mix two images in RGBA profile together. Each pixel will be calculated according to this expression:
-
-$newColor_{red} = backgroundColor_{red} * \alpha + foregroundColor_{red} * (\alpha - 1)$ 
-
-The same goes for green and blue channels. Alpha of new pixel will be the same as alpha of current background pixel.
 
 ## First approach
 
@@ -78,7 +78,3 @@ Also there is negative growth in speed if we don't use optimization flags, becau
 ## Conclusion
 
 SSE instructions allowed us to speed up the calculations *25.5 times*. However the amount of code and it's difficulty became bigger too.
-
-It was too official. Time to fool around.
-
-![image](https://user-images.githubusercontent.com/89828695/230796967-914cdcb5-ee75-4e77-8e00-35b4ebd6235b.png)
