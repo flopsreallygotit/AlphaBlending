@@ -3,6 +3,12 @@
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+// WARNING Program uses AVX instructions including AVX2. Check that your CPU supports it.
+// WARNING _mm_load in fast version uses ONLY 16 byte aligned data, that's why I use resize versions of images.
+// README  Slow version can work with all bmp pictures.
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 #include <SFML/Graphics.hpp>
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -14,10 +20,6 @@
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-// WARNING Program uses AVX instructions including AVX2. Check that your CPU supports it.
-// WARNING _mm_load in fast version uses ONLY 16 byte aligned data, that's why I use resize versions of images.
-// README  Slow version can work with all bmp pictures.
-
 #include <immintrin.h>
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,7 +30,7 @@
 
 /// @brief Number of alpha blending calculation loops.
 
-static const unsigned CalculationLoopCount = 1;
+static const unsigned CalculationLoopCount = 10000;
 
 /// @brief Horizontal offset of foreground.
 
@@ -39,6 +41,8 @@ static const unsigned Offset_x = 300;
 static const unsigned Offset_y = 200;
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+/// @brief Value in shuffle mask that says to shuffle to put zero on current place.
 
 static const char zeroValue = (char) 128;
 
